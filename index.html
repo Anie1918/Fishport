@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fish Port</title>
+  <style>
+    :root {
+      --bg: #f0f0f0;
+      --text: #333;
+      --primary: #3e8e7e;
+      --accent: #fff;
+    }
+
+    body.dark-mode {
+      --bg: #1f1f1f;
+      --text: #e0e0e0;
+      --primary: #2a6f60;
+      --accent: #222;
+    }
+
+    body {
+      margin: 0;
+      font-family: ' Times new Roman', serif;
+      background: url('content://com.android.externalstorage.documents/tree/primary%3ADownload%2FHTML/document/primary%3ADownload%2FHTML%2Fbackground%20.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text);
+      transition: 0.3s;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+    }
+
+    header {
+      background:(--primary);
+      color: var(--accent);
+      text-align: center;
+      padding: 2rem 1rem;
+      animation: slideDown 1s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      flex-wrap: wrap;
+    }
+
+    nav button {
+      background: var(--primary);
+      color: var(--accent);
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    nav button:hover {
+      background: #2a6f60;
+      transform: scale(1.05);
+    }
+
+    .section {
+      display: none;
+      padding: 2rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    img, video {
+      width: 100%;
+      border-radius: 10px;
+      margin: 1rem 0;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.6s ease;
+    }
+
+    .section.active img,
+    .section.active video {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: var(--primary);
+      color: var(--accent);
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+    <header>
+    <h1>Fish Port</h1>
+    <p>San Carlos, Tukuran, Zamboanga Del Sur</p>
+  </header>
+
+  <nav>
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('about')">About</button>
+    <button onclick="showSection('rules')">Rules</button>
+    <button onclick="showSection('photos')">Photos</button>
+  </nav>
+
+  <div id="home" class="section active">
+    <h2>Welcome</h2>
+    <p>Tukuran's fish port is a vital part of the local economy and a peaceful spot for visitors. Enjoy the long black sand beaches and a simple, abundant lifestyle.</p>
+  </div>
+
+  <div id="about" class="section">
+    <h2>About</h2>
+    <ul>
+      <li>Entrance: Free</li>
+      <li>Visitors: Locals and Tourists</li>
+      <li>Visiting Month: October - April</li>
+    </ul>
+  </div>
+
+  <div id="rules" class="section">
+    <h2>Safety & Rules</h2>
+    <ul>
+      <li>Watch children closely.</li>
+      <li>Swim only in allowed zones.</li>
+      <li>Don't swim after drinking alcohol.</li>
+      <li>Keep the area clean.</li>
+    </ul>
+  </div>
+
+  <div id="photos" class="section">
+    <h2>Gallery</h2>
+    <img src="p1.jpeg" alt="Beach View">
+    <img src="p2.jpeg" alt="Beach View">
+    <img src="p3.jpeg" alt="Beach View">
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+      Your browser doesn't support video.
+    </video>
+  </div>
+
+  
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('active');
+      });
+      const activeSection = document.getElementById(id);
+      activeSection.classList.add('active');
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>
